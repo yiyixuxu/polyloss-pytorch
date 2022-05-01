@@ -1,6 +1,8 @@
 # polyloss-pytorch
 
-```class PolyLoss(softmax=False, ce_weight=None, reduction='mean', epsilon=1.0)```
+```python
+class PolyLoss(softmax=False, ce_weight=None, reduction='mean', epsilon=1.0)
+```
 
 This class is used to compute the Poly-1 Loss between the `input` and `target` tensors.
 
