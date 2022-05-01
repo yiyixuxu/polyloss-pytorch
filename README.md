@@ -29,7 +29,7 @@ loss = PolyLoss(softmax=True)
 B, C, H, W = 2, 5, 3, 3
 input = torch.rand(B, C, H, W, requires_grad=True)
 target = torch.randint(low=0, high=C - 1, size=(B, H, W)).long()
-target = to_one_hot(target_idx[:, None, ...], num_classes=C)
+target = to_one_hot(target[:, None, ...], num_classes=C)
 output = loss(input, target)
 output.backward()
 
