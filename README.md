@@ -16,11 +16,13 @@ The predication `input` is compared with ground truth `target`. `Input` is expec
 
 The original paper: [Zhaoqi, L. et. al. (2022): PolyLoss: A Polynomial Expansion Perspective of Classification Loss Functions, 2022](https://arxiv.org/abs/2204.12511v1)
 
-#### parameters
-* `softmax (bool)` – if `True`, apply a softmax function to the prediction (i.e.`input`)
-* `ce_weight(Tensor,optional)` – a manual rescaling weight given to each class. If given, has to be a Tensor of size `N`(it's same as `weight` argument for `nn.CrossEntropyLoss` class)
-* `reduction(string, optional)` – Specifies the reduction to apply to the output: 'none' | 'mean' | 'sum'. 'none': no reduction will be applied, 'mean': the weighted mean of the output is taken, 'sum': the output will be summed.
-* `epsilon`: the first polynomial coefficient. defaults to be `1.` 
+### Parameters
+* __softmax (bool)__ – if `True`, apply a softmax function to the prediction (i.e.`input`)
+* __ce_weight(Tensor,optional)__ – a manual rescaling weight given to each class. If given, has to be a Tensor of size `N`(it's same as `weight` argument for `nn.CrossEntropyLoss` class)
+* __reduction(string, optional)__ – Specifies the reduction to apply to the output: 'none' | 'mean' | 'sum'. 'none': no reduction will be applied, 'mean': the weighted mean of the output is taken, 'sum': the output will be summed.
+* __epsilon__: the first polynomial coefficient. defaults to be `1.` 
+
+### How to Use 
 
 #### Examples
 ```python
@@ -45,4 +47,9 @@ target = torch.randint(low=0, high=C - 1, size=(B, 1, H, W)).long()
 output = loss(input, target)
 output.backward()
 ```
+#### Use PolyLoss with Fast.ai and Weights & Biases
+
+in [tutorial in colab](https://github.com/yiyixuxu/polyloss-pytorch/blob/master/tutorial_testing_polyloss_with_fastai_and_W%26B.ipynb), I provided an example of how to use PolyLoss in fastai (super easy!) and do a hyperparameter search with Weights & Biases. 
+
+
 
