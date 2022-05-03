@@ -31,7 +31,7 @@ def to_one_hot(labels: torch.Tensor, num_classes: int, dtype: torch.dtype = torc
 
 class PolyLoss(_Loss):
     def __init__(self,
-                 softmax: bool = False,
+                 softmax: bool = True,
                  ce_weight: Optional[torch.Tensor] = None,
                  reduction: str = 'mean',
                  epsilon: float = 1.0,
@@ -47,12 +47,15 @@ class PolyLoss(_Loss):
         Args:
             input: the shape should be BNH[WD], where N is the number of classes.
                 You can pass logits or probabilities as input, if pass logit, must set softmax=True
-            target: the shape should be BNH[WD] (one-hot format) or B1H[WD], where N is the number of classes.
+            target: if target is in one-hot format, its shape should be BNH[WD],
+                if it is not one-hot encoded, it should has shape B1H[WD] or BH[WD], where N is the number of classes, 
                 It should contain binary values
 
         Raises:
             ValueError: When ``self.reduction`` is not one of ["mean", "sum", "none"].
        """
+        if len(input.shape) - len(target.shape) == 1:
+            target = target.unsqueeze(1).long()
         n_pred_ch, n_target_ch = input.shape[1], target.shape[1]
         # target not in one-hot encode format, has shape B1H[WD]
         if n_pred_ch != n_target_ch:
@@ -78,10 +81,8 @@ class PolyLoss(_Loss):
         elif self.reduction == 'sum':
             polyl = torch.sum(poly_loss)  # sum over the batch and channel dims
         elif self.reduction == 'none':
-            # If we are not computing voxelwise loss components at least
-            # make sure a none reduction maintains a broadcastable shape
-            # BH[WD] -> BH1[WD]
-            polyl = poly_loss.unsqueeze(1)
+            # BH[WD] 
+            polyl = poly_loss
         else:
             raise ValueError(f'Unsupported reduction: {self.reduction}, available options are ["mean", "sum", "none"].')
         return (polyl)
