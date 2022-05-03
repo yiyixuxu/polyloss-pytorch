@@ -10,9 +10,9 @@ Poly-1 Loss is defined as
                 
 <img src="https://latex.codecogs.com/svg.image?L_\text{poly-1}&space;=-\log(P_t)&space;&plus;&space;\epsilon_1&space;\cdot&space;(1-P_t) ">
 
-The predication `input` is compared with ground truth `target`. `Input` is expected to have shape `BNHW[D]` where `N` is number of classes. It can contains either logits or probabilities for each class, if passing logits as input, set `softmax=True`. `target` can be i expected to have shape `B1HW[D]`, `BHW[D]` or `BNHW[D]` (one-hot format).
+The predication `input` is compared with ground truth `target`. `Input` is expected to have shape `BNHW[D]` where `N` is number of classes. It can contains either logits or probabilities for each class, if passing logits as input, set `softmax=True`. `target` is expected to have shape `B1HW[D]`, `BHW[D]` or `BNHW[D]` (one-hot format).
 
-`epsilon` is the first polynomial coefficient in cross-entropy loss, in order to achieve best result, this value needs to be adjusted for different task and data. The optimal value for `epsilon` can be find through hyperparameter tunning 
+`epsilon` is the first polynomial coefficient in cross-entropy loss, in order to achieve best result, this value needs to be adjusted for different task and data. The optimal value for `epsilon` can be found through hyperparameter tunning 
 
 The original paper: [Zhaoqi, L. et. al. (2022): PolyLoss: A Polynomial Expansion Perspective of Classification Loss Functions, 2022](https://arxiv.org/abs/2204.12511v1)
 
