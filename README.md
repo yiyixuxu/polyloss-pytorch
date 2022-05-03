@@ -22,8 +22,12 @@ The original paper: [Zhaoqi, L. et. al. (2022): PolyLoss: A Polynomial Expansion
 * __reduction(string, optional)__ – Specifies the reduction to apply to the output: 'none' | 'mean' | 'sum'. 'none': no reduction will be applied, 'mean': the weighted mean of the output is taken, 'sum': the output will be summed.
 * __epsilon__: the first polynomial coefficient. defaults to be `1.` 
 
-### How to Use 
+### a colab tutorial: Use PolyLoss with Fast.ai and Weights & Biases
 
+in [tutorial in colab](https://github.com/yiyixuxu/polyloss-pytorch/blob/master/tutorial_testing_polyloss_with_fastai_and_W%26B.ipynb), I provided an example of how to use PolyLoss in fastai (super easy!) and do a hyperparameter search with Weights & Biases. 
+
+
+### How to Use 
 #### Examples
 ```python
 from PolyLoss import to_one_hot, PolyLoss
@@ -47,9 +51,7 @@ target = torch.randint(low=0, high=C - 1, size=(B, 1, H, W)).long()
 output = loss(input, target)
 output.backward()
 ```
-#### Use PolyLoss with Fast.ai and Weights & Biases
 
-in [tutorial in colab](https://github.com/yiyixuxu/polyloss-pytorch/blob/master/tutorial_testing_polyloss_with_fastai_and_W%26B.ipynb), I provided an example of how to use PolyLoss in fastai (super easy!) and do a hyperparameter search with Weights & Biases. 
 
 
 
