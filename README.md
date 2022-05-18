@@ -44,5 +44,15 @@ input = torch.rand(B, C, H, W, requires_grad=True)
 target = torch.randint(low=0, high=C - 1, size=(B, 1, H, W)).long()
 output = loss(input, target)
 output.backward()
-```
 
+
+# Example of PolyBCELoss
+from PolyLoss import PolyBCELoss
+loss = PolyBCELoss()
+B, H, W = 2, 3, 3
+input = torch.rand(B, H, W, requires_grad=True)
+target = torch.empty(B,H,W).random_(2)
+output = loss(input, target)
+output.backward()
+
+```
