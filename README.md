@@ -52,7 +52,6 @@ output = loss(input, target)
 output.backward()
 
 
-<<<<<<< HEAD
 # Example of PolyBCELoss
 from PolyLoss import PolyBCELoss
 loss = PolyBCELoss()
@@ -63,7 +62,3 @@ output = loss(input, target)
 output.backward()
 
 ```
-=======
-
-
->>>>>>> 5dface9975ffaaeababd293819b0aeff0c8c8b7e
